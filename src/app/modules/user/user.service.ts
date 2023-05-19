@@ -13,6 +13,11 @@ export const getUserByIdFromDb = async (
   return user;
 };
 
+export const getAdminUsersFromDb = async () => {
+  const adminUsers = await User.getAdminUsers();
+  return adminUsers;
+};
+
 export const createUserToDb = async (payload: IUser): Promise<IUser> => {
   const user = new User(payload);
 
@@ -30,6 +35,8 @@ export const createUserToDb = async (payload: IUser): Promise<IUser> => {
   // });
 
   await user.save();
+
+  console.log(user.fullName()); // custom instance method
 
   return user;
 };
